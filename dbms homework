@@ -1,0 +1,98 @@
+    create table STUDENT(SSN integer primary key,Name varchar(10),Major varchar(10),Bdate date);
+    create table COURSE(Course_No integer primary key,Cname varchar(10),Dept varchar(10));
+    create table TEXT1(Book_ISBN integer primary key,Book_Title varchar(10),Publisher varchar(10),Author varchar(10));
+    create table BOOK_ADOPTION(Course_No integer,Quarter integer,Book_ISBN integer,primary key(Course_No,Quarter),foreign key(Course_No) references COURSE(Course_No),foreign key(Book_ISBN) references TEXT1(Book_ISBN));
+    create table ENROLL(SSN integer,Course_No integer,Quarter integer,Grade varchar(5),primary key(SSN,Course_No,Quarter),foreign key(SSN) references STUDENT(SSN),foreign key(Course_No,Quarter) references BOOK_ADOPTION(Course_No,Quarter));
+    insert into STUDENT values(101,'Sannidhi','CS','2000-12-25');
+    insert into STUDENT values(102,'Shiva','MCT','2001-08-03');
+    insert into STUDENT values(103,'Ramesh','IS','2001-01-20');
+    insert into STUDENT values(104,'Vinitha','AERO','2000-09-17');
+    insert into STUDENT values(105,'Vicky','MECH','2002-08-20');
+    insert into COURSE values(10,'DBMS','CSE');
+    insert into COURSE values(11,'ATC','ISE');
+    insert into COURSE values(12,'FM','ME');
+    insert into COURSE values(13,'MOM','AE');
+    insert into COURSE values(14,'CAM','CE');
+    insert into TEXT1 values(1001,'Chemistry','Sandy','Sannidhi');
+    insert into TEXT1 values(1002,'Physics','Bharath','Vicky');
+    insert into TEXT1 values(1003,'Maths','Super','Vinitha');
+    insert into TEXT1 values(1004,'Java','Bharath','Ramesh');
+    insert into TEXT1 values(1005,'Unix','Hindu','Vijendra');
+    insert into BOOK_ADOPTION values(10,4,1001);
+    insert into BOOK_ADOPTION values(11,3,1002);
+    insert into BOOK_ADOPTION values(12,6,1003);
+    insert into BOOK_ADOPTION values(13,4,1004);
+    insert into BOOK_ADOPTION values(14,2,1005);
+    insert into ENROLL values(101,10,4,'A');
+    insert into ENROLL values(102,11,3,'C');
+    insert into ENROLL values(105,14,2,'D');
+    insert into ENROLL values(104,13,4,'A');
+    insert into ENROLL values(103,12,6,'B');
+
+---
+
+**Query #1**
+
+    select * from STUDENT;
+
+| SSN | Name     | Major | Bdate      |
+| --- | -------- | ----- | ---------- |
+| 101 | Sannidhi | CS    | 2000-12-25 |
+| 102 | Shiva    | MCT   | 2001-08-03 |
+| 103 | Ramesh   | IS    | 2001-01-20 |
+| 104 | Vinitha  | AERO  | 2000-09-17 |
+| 105 | Vicky    | MECH  | 2002-08-20 |
+
+---
+    select * from COURSE;
+
+| Course_No | Cname | Dept |
+| --------- | ----- | ---- |
+| 10        | DBMS  | CSE  |
+| 11        | ATC   | ISE  |
+| 12        | FM    | ME   |
+| 13        | MOM   | AE   |
+| 14        | CAM   | CE   |
+
+---
+    select * from TEXT1;
+
+| Book_ISBN | Book_Title | Publisher | Author   |
+| --------- | ---------- | --------- | -------- |
+| 1001      | Chemistry  | Sandy     | Sannidhi |
+| 1002      | Physics    | Bharath   | Vicky    |
+| 1003      | Maths      | Super     | Vinitha  |
+| 1004      | Java       | Bharath   | Ramesh   |
+| 1005      | Unix       | Hindu     | Vijendra |
+
+---
+    select * from BOOK_ADOPTION;
+
+| Course_No | Quarter | Book_ISBN |
+| --------- | ------- | --------- |
+| 10        | 4       | 1001      |
+| 11        | 3       | 1002      |
+| 12        | 6       | 1003      |
+| 13        | 4       | 1004      |
+| 14        | 2       | 1005      |
+
+---
+    select * from ENROLL;
+
+| SSN | Course_No | Quarter | Grade |
+| --- | --------- | ------- | ----- |
+| 101 | 10        | 4       | A     |
+| 102 | 11        | 3       | C     |
+| 103 | 12        | 6       | B     |
+| 104 | 13        | 4       | A     |
+| 105 | 14        | 2       | D     |
+
+---
+
+[View on DB Fiddle](https://www.db-fiddle.com/)
+
+
+
+
+
+
